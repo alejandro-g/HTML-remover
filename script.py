@@ -2,15 +2,18 @@
 import requests
 import re
 
-r = requests.get("https://example.com")
+r = requests.get("https://python.org")
 
 text_file = open("Input.txt", "w")
 text_file.write(r.text)
 text_file.close()
 
-r = "<p class='important'>This is an important text</p>"
 
 def striphtml(r): 
     cleanr = re.compile('<.*?>')
     cleantext = re.sub(cleanr, '', r)
     return cleantext
+
+text_file = open("Input.txt", "a")
+text_file.write(striphtml(r.text))
+text_file.close() 
